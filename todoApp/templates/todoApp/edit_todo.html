@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section class="feature">
+        <div class="feature-content">
+            <h1>Edit Todo</h1>
+            <form action="{% url 'edit_todo' id=task.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" value="{{ task.title }}" class="form-control" id="title" placeholder="Enter Your Todo Task">
+                </div>
+                <button type="submit" value="Update" class="btn btn-primary">Update ToDo</button>
+            </form>
+        </div> 
+    </section>
+{% endblock content %}

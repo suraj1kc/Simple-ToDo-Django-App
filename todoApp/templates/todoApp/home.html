@@ -1,0 +1,27 @@
+{% extends 'base.html'%} 
+{% load static %} 
+{% block content %}
+
+<section class="feature">
+  <div class="feature-content">
+    <h1>Todo</h1>
+    <p>Let's create todo list for you.</p>
+    <a class="btn btn-primary cta" href="{% url 'add_todo' %}">Add New Todo</a>
+  </div>
+  <img src="{% static 'images/feature.svg' %}" alt="" class="feature-image" />
+</section>
+<section class="todo-list">
+  <h2>Recent Todo List</h2>
+  <ol>
+    {% for data in tasks %}
+    <li>
+      <span class="todo-item">{{ data.title }}.</span>
+      <span class="todo-date">{{ data.created_at }}</span>
+	  <a href="{% url 'edit_todo' data.id %}" >Edit</a>
+	  <a href="{% url 'delete_todo' data.id %}" >Delete</a>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+
+{% endblock content %}
